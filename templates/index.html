@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Study Log</title>
+{% endblock %}
+
+{%block body %}
+        <h2>Keep track of studies and plan sessions</h2>
+        <div>
+        <form action="/" method="POST">
+            <label>Add New Subject</label>
+            <input type="text" name="subject" id="subject" placeholder="Subject Name" />
+            <button>Add</button>
+        </form>
+        </div>
+        <br>
+        <hr />
+        <div>
+        <h3>Subjects</h3>
+        {% if subjects | length < 1 %}
+        <h4>There are no subjects added.... Add one here!</h4>
+        
+        {% else %}
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Action</th>
+            </tr>
+            {% for subject in subjects %}
+            <tr>
+                <td><a href="/Subjects/{{subject.id}}">{{subject.sub_name}}</a></td>
+                <td><a href="/delete/{{subject.id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </table>
+        </div>
+{% endblock %}

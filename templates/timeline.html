@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <h3 style="text-align: center;">{{subject.sub_name}}</h3>
+    <form action="/Subjects/{{subject.id}}" method="POST">
+        <label>Add New Task</label>
+        <input type="text" name="task" id="task" placeholder="Describe task" />
+        <button>Add</button>
+    </form>
+    {% if timeline | length < 1 %}
+    <h4>No Tasks Done till now for {{subject.sub_name}}</h4>
+
+    {% else %}
+        {% for t in timeline %}
+            <p><b>{{t.Day_of_task}}</b></p>
+            <table>
+                <tr>
+                    <th>Task</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>{{t.content}}</td>
+                    <td><a href="/deleteTask/{{subject.id}}/{{t.id}}">delete</a></td>
+                </tr>
+        {% endfor %}
+    {% endif %}
+    </table>
+{% endblock %}
