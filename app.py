@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
 from datetime import datetime
 
 # App
@@ -65,7 +66,7 @@ def timeline(id:int):
     
     else:
         subject = Subjects.query.get_or_404(id)
-        timeline = Timeline.query.order_by(Timeline.Day_of_task).all()
+        timeline = Timeline.query.order_by(desc(Timeline.Day_of_task)).all()
         return render_template("timeline.html",subject = subject,timeline = timeline)
 
 

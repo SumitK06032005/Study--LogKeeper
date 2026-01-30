@@ -9,14 +9,16 @@
         <label>Add New Task</label>
         <input type="text" name="task" id="task" placeholder="Describe task" />
         <button>Add</button>
-    </form>
+    </form><br>
+    <hr>
+    <h3>Timeline of tasks done of {{subject.sub_name}}</h3>
     {% if timeline | length < 1 %}
     <h4>No Tasks Done till now for {{subject.sub_name}}</h4>
 
     {% else %}
         {% for t in timeline %}
-            <p><b>{{t.Day_of_task}}</b></p>
             <table>
+                <p><b>{{t.Day_of_task}}</b></p>
                 <tr>
                     <th>Task</th>
                     <th>Action</th>
